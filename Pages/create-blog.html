@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Blog | BlogNest</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Dashboard / Blog CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-top">
+
+                <a href="../index.html" class="dashboard-logo">
+                    BlogNest
+                </a>
+
+                <button class="close-sidebar" id="closeSidebar">
+                    ×
+                </button>
+
+                <nav class="sidebar-nav">
+
+                    <a href="dashboard.html" class="sidebar-link">
+                        <span>▣</span>
+                        Dashboard
+                    </a>
+
+                    <a href="#" class="sidebar-link">
+                        <span>▤</span>
+                        My Blogs
+                    </a>
+
+                    <a href="create-blog.html" class="sidebar-link active">
+                        <span>＋</span>
+                        Create Blog
+                    </a>
+
+                    <a href="#" class="sidebar-link">
+                        <span>◯</span>
+                        Profile
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <a href="../index.html" class="sidebar-link logout-link">
+                    <span>↪</span>
+                    Logout
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-topbar">
+
+                <button class="menu-button" id="openSidebar">
+                    ☰
+                </button>
+
+                <div class="topbar-title">
+                    Create Blog
+                </div>
+
+                <a href="dashboard.html" class="topbar-create">
+                    Back to Dashboard
+                </a>
+
+            </header>
+
+
+            <div class="dashboard-content">
+
+                <!-- Page Heading -->
+
+                <section class="welcome-section">
+
+                    <div>
+                        <span class="welcome-label">
+                            CREATE CONTENT
+                        </span>
+
+                        <h1>Create a New Blog</h1>
+
+                        <p>
+                            Share your ideas, knowledge, and experiences
+                            with the BlogNest community.
+                        </p>
+                    </div>
+
+                </section>
+
+
+                <!-- Blog Form -->
+
+                <section class="blog-editor-card">
+
+                    <form id="blogForm">
+
+                        <!-- Title -->
+
+                        <div class="editor-group">
+
+                            <label for="blogTitle">
+                                Blog Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="blogTitle"
+                                name="blogTitle"
+                                placeholder="Enter your blog title..."
+                                maxlength="120"
+                                required
+                            >
+
+                            <div class="field-hint">
+                                <span>Write a clear and engaging title.</span>
+                                <span id="titleCount">0 / 120</span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Category -->
+
+                        <div class="editor-row">
+
+                            <div class="editor-group">
+
+                                <label for="blogCategory">
+                                    Category
+                                </label>
+
+                                <select
+                                    id="blogCategory"
+                                    name="blogCategory"
+                                    required
+                                >
+                                    <option value="">
+                                        Select category
+                                    </option>
+
+                                    <option value="technology">
+                                        Technology
+                                    </option>
+
+                                    <option value="programming">
+                                        Programming
+                                    </option>
+
+                                    <option value="ai">
+                                        AI & ML
+                                    </option>
+
+                                    <option value="web-development">
+                                        Web Development
+                                    </option>
+
+                                    <option value="career">
+                                        Career
+                                    </option>
+
+                                    <option value="productivity">
+                                        Productivity
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Cover Image -->
+
+                            <div class="editor-group">
+
+                                <label for="coverImage">
+                                    Cover Image
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="coverImage"
+                                    name="coverImage"
+                                    accept="image/*"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Content -->
+
+                        <div class="editor-group">
+
+                            <label for="blogContent">
+                                Blog Content
+                            </label>
+
+                            <textarea
+                                id="blogContent"
+                                name="blogContent"
+                                rows="14"
+                                placeholder="Start writing your story..."
+                                required
+                            ></textarea>
+
+                            <div class="field-hint">
+                                <span>
+                                    Share something useful with your readers.
+                                </span>
+
+                                <span id="contentCount">
+                                    0 characters
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Preview -->
+
+                        <div class="editor-group">
+
+                            <label>
+                                Live Preview
+                            </label>
+
+                            <div class="blog-preview" id="blogPreview">
+
+                                <span class="preview-placeholder">
+                                    Your blog title and content preview
+                                    will appear here.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Actions -->
+
+                        <div class="editor-actions">
+
+                            <button
+                                type="button"
+                                class="secondary-editor-btn"
+                                id="saveDraftBtn"
+                            >
+                                Save Draft
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="primary-editor-btn"
+                            >
+                                Publish Blog
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/blog.js"></script>
+
+</body>
+</html>
