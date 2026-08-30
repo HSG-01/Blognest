@@ -152,9 +152,26 @@ if (blogForm) {
             return;
         }
 
-        alert(
-            "Blog interface is ready! Publishing functionality will be connected in a later module."
-        );
+       fetch("http://localhost:5000/api/blog/create", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+    title: title,
+    content: content,
+    author: "Harish",
+    category: category
+})
+})
+.then(response => response.json())
+.then(data => {
+    alert(data.message || "Blog published successfully!");
+})
+.catch(error => {
+    console.error("Error:", error);
+    alert("Failed to publish blog.");
+});
 
     });
 

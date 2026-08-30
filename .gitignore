@@ -10,3 +10,9 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+
+# Environment variables
+.env
+
+# Node.js dependencies
+node_modules/

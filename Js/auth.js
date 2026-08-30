@@ -23,11 +23,30 @@ if (loginForm) {
             return;
         }
 
-        // Frontend-only login
+       // Connect login form to backend API
+fetch("http://localhost:5000/api/auth/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        email: email,
+        password: password
+    })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.message === "Login successful") {
         alert("Login successful! Welcome to BlogNest.");
-
-        // Go to dashboard
         window.location.href = "dashboard.html";
+    } else {
+        alert(data.message || "Login failed.");
+    }
+})
+.catch(error => {
+    console.error("Login error:", error);
+    alert("Unable to connect to the server.");
+});
 
     });
 
@@ -56,26 +75,48 @@ if (registerForm) {
         const confirmPassword =
             document.getElementById("confirmPassword").value.trim();
 
+// Connect registration form to backend API
+fetch("http://localhost:5000/api/auth/register", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name: fullName,
+        email: email,
+        password: password
+    })
+})
+.then(response => response.json())
+.then(data => {
 
-        // Check required fields
-        if (!fullName || !email || !password || !confirmPassword) {
+    if (data.message === "User registered successfully") {
 
-            alert("Please fill in all fields.");
+        const successMessage = document.createElement("p");
 
-            return;
-        }
+        successMessage.textContent =
+            "Registration successful! Redirecting to login...";
 
+        successMessage.className = "success-message";
 
-        // Check password match
-        if (password !== confirmPassword) {
+        registerForm.appendChild(successMessage);
 
-            alert("Passwords do not match.");
+        registerForm.reset();
 
-            return;
-        }
+        setTimeout(function () {
+            window.location.href = "login.html";
+        }, 1500);
 
+    } else {
+        alert(data.message || "Registration failed.");
+    }
 
-        // Success message
+})
+.catch(error => {
+    console.error("Registration error:", error);
+    alert("Unable to connect to the server.");
+});
+            // Success message
         const successMessage = document.createElement("p");
 
         successMessage.textContent =
