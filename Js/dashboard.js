@@ -42,33 +42,11 @@ actionButtons.forEach(function (button) {
     });
 
 });
-// ==========================
-// LOAD BLOGS FROM BACKEND
-// ==========================
-
-async function loadBlogs() {
-
-    try {
-
-        const response = await fetch("http://localhost:5000/api/blog");
-
-        const data = await response.json();
-
-        console.log("Blogs received from backend:", data);
-
-    } catch (error) {
-
-        console.error("Error loading blogs:", error);
-
-    }
-}
 
 
-// Load blogs when dashboard opens
-loadBlogs();
-// ==========================
-// DISPLAY BLOGS IN TABLE
-// ==========================
+/* ==========================
+   DISPLAY BLOGS IN TABLE
+========================== */
 
 async function displayBlogs() {
 
@@ -102,6 +80,7 @@ async function displayBlogs() {
             return;
         }
 
+
         blogs.forEach(function (blog) {
 
             const row = document.createElement("tr");
@@ -109,14 +88,18 @@ async function displayBlogs() {
             row.innerHTML = `
                 <td>
                     <div class="blog-title-cell">
+
                         <div class="mini-thumbnail purple-bg">
-                            ${blog.category ? blog.category.substring(0, 2).toUpperCase() : "BL"}
+                            ${blog.category
+                                ? blog.category.substring(0, 2).toUpperCase()
+                                : "BL"}
                         </div>
 
                         <div>
                             <strong>${blog.title}</strong>
                             <span>${blog.category || "General"}</span>
                         </div>
+
                     </div>
                 </td>
 
@@ -135,7 +118,9 @@ async function displayBlogs() {
                 </td>
 
                 <td>
-                   <button class="action-btn" onclick="viewBlog(${blog.id})">
+                    <button
+                        class="action-btn"
+                        onclick="viewBlog('${blog._id}')">
                         View
                     </button>
                 </td>
@@ -153,9 +138,19 @@ async function displayBlogs() {
 }
 
 
-// Load blogs into dashboard table
-displayBlogs();
+/* ==========================
+   VIEW INDIVIDUAL BLOG
+========================== */
 
 function viewBlog(blogId) {
-    window.location.href = `../pages/view-blog.html?id=${blogId}`;
+
+    window.location.href = `../Pages/view-blog.html?id=${blogId}`;
+
 }
+
+
+/* ==========================
+   LOAD BLOGS
+========================== */
+
+displayBlogs();
