@@ -41,24 +41,65 @@ The backend was developed using Node.js and Express.js.
 - User Login API
 - Create Blog API
 - Get All Blogs API
+- Get Individual Blog API
 - View Blog API integration
 - Frontend and Backend Integration
 - JSON request and response handling
 - CORS configuration
 - Environment variable configuration
 
-## Module 3 – Database
+## Module 3 – Database Integration
 
-Database integration is the next development stage of the project.
+Database integration has been completed using MongoDB Atlas and Mongoose.
 
-### Planned Database Features
+### Database Features
 
-- MongoDB
-- Mongoose
+- MongoDB Atlas database integration
+- Mongoose database connection
 - Persistent user data
 - Persistent blog data
+- User registration stored in MongoDB
+- User login using MongoDB user data
+- Secure password hashing using bcrypt
 - Database-based blog retrieval
+- Create and store blog posts in MongoDB
+- Retrieve all blogs from MongoDB
+- Retrieve individual blog details using MongoDB ObjectId
+- Blog view counter
 - Persistent data after server restart
+
+### Authentication
+
+User authentication is integrated with MongoDB.
+
+- User registration
+- Duplicate email checking
+- Password hashing using bcrypt
+- Secure password comparison during login
+- MongoDB-based login authentication
+- Password is not returned in API responses
+
+### Blog Database
+
+Blog posts are stored permanently in the MongoDB database.
+
+Each blog can contain:
+
+- Title
+- Content
+- Author
+- Category
+- Status
+- Date
+- Views
+- Created timestamp
+- Updated timestamp
+
+### Module 3 Status
+
+**Completed**
+
+MongoDB Atlas is successfully connected to the BlogNest backend, and users and blog posts are being stored and retrieved from the database.
 
 ## Pages
 
@@ -86,9 +127,11 @@ The project contains the following pages:
 - REST APIs
 - CORS
 - dotenv
+- bcrypt
 
 ### Database
 
+- MongoDB Atlas
 - MongoDB
 - Mongoose
 
@@ -105,9 +148,15 @@ The project contains the following pages:
 BlogNest/
 │
 ├── backend/
+│   ├── models/
+│   │   ├── Blog.js
+│   │   └── User.js
+│   │
 │   ├── routes/
 │   │   ├── auth.js
 │   │   └── blog.js
+│   │
+│   ├── db.js
 │   ├── package.json
 │   ├── package-lock.json
 │   └── server.js
@@ -119,7 +168,7 @@ BlogNest/
 │
 ├── images/
 │
-├── Js/
+├── JS/
 │   ├── auth.js
 │   ├── blog.js
 │   ├── dashboard.js
