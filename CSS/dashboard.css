@@ -927,3 +927,41 @@ tbody tr:last-child td {
         gap: 3px;
     }
 }
+
+/* =========================
+   BLOG SEARCH & FILTERS
+========================= */
+
+.blog-filters {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.blog-filters input,
+.blog-filters select {
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.blog-filters input {
+    flex: 1;
+    min-width: 240px;
+}
+
+.blog-filters select {
+    min-width: 190px;
+    cursor: pointer;
+}
+
+.blog-filters input:focus,
+.blog-filters select:focus {
+    outline: none;
+    border-color: #5b4bdb;
+}

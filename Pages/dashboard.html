@@ -144,7 +144,7 @@
 
                         <div>
                             <p>Total Blogs</p>
-                            <h2>12</h2>
+                            <h2 id="totalBlogs">0</h2>
                         </div>
 
                     </article>
@@ -158,7 +158,7 @@
 
                         <div>
                             <p>Published</p>
-                            <h2>8</h2>
+                            <h2 id="publishedBlogs">0</h2>
                         </div>
 
                     </article>
@@ -172,7 +172,7 @@
 
                         <div>
                             <p>Drafts</p>
-                            <h2>4</h2>
+                           <h2 id="draftBlogs">0</h2>
                         </div>
 
                     </article>
@@ -186,7 +186,7 @@
 
                         <div>
                             <p>Total Views</p>
-                            <h2>1,248</h2>
+                            <h2 id="totalViews">0</h2>
                         </div>
 
                     </article>
@@ -213,6 +213,56 @@
                         <a href="#" class="view-link">
                             View All →
                         </a>
+
+                    </div>
+
+                    <!-- =========================
+     SEARCH & CATEGORY FILTER
+========================== -->
+
+<div class="blog-filters">
+
+    <input
+        type="text"
+        id="searchBlog"
+        placeholder="🔍 Search blogs..."
+    >
+
+    <select id="categoryFilter">
+
+        <option value="all">
+            All Categories
+        </option>
+
+        <option value="technology">
+            Technology
+        </option>
+
+        <option value="programming">
+            Programming
+        </option>
+
+        <option value="ai">
+            AI & ML
+        </option>
+
+        <option value="web-development">
+            Web Development
+        </option>
+
+        <option value="career">
+            Career
+        </option>
+
+        <option value="productivity">
+            Productivity
+        </option>
+
+        <option value="general">
+            General
+        </option>
+
+</select>
 
                     </div>
 
@@ -543,7 +593,7 @@
 
 
     <!-- JavaScript -->
-    <script src="../js/dashboard.js"></script>
+    <script src="../Js/dashboard.js"></script>
 
 </body>
 </html>

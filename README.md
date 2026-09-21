@@ -6,9 +6,9 @@ BlogNest is a responsive Blog Application developed as part of my Codomax Digita
 
 ## About the Project
 
-BlogNest is a modern blog platform where users can explore blog content, create an account, log in, manage their dashboard, and create blog posts.
+BlogNest is a modern blog platform where users can explore blog content, create an account, log in, manage their dashboard, and create and manage blog posts.
 
-The project is being developed module-by-module, starting with frontend development and progressing toward backend API integration and database persistence.
+The project is being developed module-by-module, starting with frontend development and progressing toward backend API integration, database persistence, and complete CRUD operations.
 
 ## Module 1 – Frontend Development
 
@@ -42,6 +42,8 @@ The backend was developed using Node.js and Express.js.
 - Create Blog API
 - Get All Blogs API
 - Get Individual Blog API
+- Update Blog API
+- Delete Blog API
 - View Blog API integration
 - Frontend and Backend Integration
 - JSON request and response handling
@@ -101,6 +103,107 @@ Each blog can contain:
 
 MongoDB Atlas is successfully connected to the BlogNest backend, and users and blog posts are being stored and retrieved from the database.
 
+## Module 4 – CRUD Operations
+
+Module 4 focuses on implementing complete CRUD operations for blog management.
+
+### CRUD Features
+
+- Create new blog posts
+- Read and display all blogs
+- Read individual blog details
+- Update existing blog posts
+- Delete blog posts
+- Edit existing blog content
+- Dynamic blog dashboard
+- Database-based blog management
+
+### Create
+
+Users can create and publish new blog posts by providing:
+
+- Blog Title
+- Category
+- Blog Content
+- Author
+
+The blog is stored permanently in MongoDB.
+
+### Read
+
+The dashboard retrieves blog posts directly from MongoDB and displays:
+
+- Blog Title
+- Category
+- Status
+- Date
+- Views
+- Actions
+
+Users can also open individual blogs and view their content.
+
+### Update
+
+Users can edit existing blog posts.
+
+The edit functionality:
+
+- Loads existing blog data using the blog ID
+- Displays the existing title
+- Displays the existing category
+- Displays the existing content
+- Provides live preview
+- Updates the blog in MongoDB
+- Returns the user to the dashboard after successful update
+
+### Delete
+
+Users can delete blog posts directly from the dashboard.
+
+After deletion, the blog is removed from the MongoDB database and no longer appears in the dashboard.
+
+### Search Blogs
+
+A search feature has been implemented to allow users to search blogs by:
+
+- Blog title
+- Blog content
+
+The search results are displayed dynamically on the dashboard.
+
+### Category Filter
+
+Users can filter blogs according to their category.
+
+Available categories include:
+
+- Technology
+- Programming
+- AI & ML
+- Web Development
+- Career
+- Productivity
+- General
+
+### Dynamic Dashboard Statistics
+
+The dashboard statistics are connected to the actual database data.
+
+The dashboard dynamically displays:
+
+- Total Blogs
+- Published Blogs
+- Draft Blogs
+- Total Views
+
+These values are calculated from the blogs retrieved from MongoDB instead of using fixed values.
+
+### Module 4 Status
+
+**Completed**
+
+Complete CRUD functionality has been implemented and tested successfully. Search, category filtering, and dynamic dashboard statistics have also been implemented.
+
 ## Pages
 
 The project contains the following pages:
@@ -146,6 +249,7 @@ The project contains the following pages:
 
 ```text
 BlogNest/
+
 │
 ├── backend/
 │   ├── models/

@@ -112,4 +112,96 @@ router.get("/:id", async (req, res) => {
 });
 
 
+// ==============================
+// UPDATE BLOG
+// ==============================
+router.put("/:id", async (req, res) => {
+    try {
+
+        const {
+            title,
+            content,
+            author,
+            category
+        } = req.body;
+
+        // Check required fields
+        if (!title || !content || !author) {
+            return res.status(400).json({
+                message: "Title, content and author are required"
+            });
+        }
+
+        // Find and update blog
+        const updatedBlog = await Blog.findByIdAndUpdate(
+            req.params.id,
+            {
+                title,
+                content,
+                author,
+                category: category || "General"
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        );
+
+        // Blog not found
+        if (!updatedBlog) {
+            return res.status(404).json({
+                message: "Blog not found"
+            });
+        }
+
+        res.status(200).json({
+            message: "Blog updated successfully",
+            blog: updatedBlog
+        });
+
+    } catch (error) {
+
+        console.error("Update blog error:", error.message);
+
+        res.status(500).json({
+            message: "Server error while updating blog"
+        });
+
+    }
+});
+
+
+// ==============================
+// DELETE BLOG
+// ==============================
+router.delete("/:id", async (req, res) => {
+    try {
+
+        // Find and delete blog
+        const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
+
+        // Blog not found
+        if (!deletedBlog) {
+            return res.status(404).json({
+                message: "Blog not found"
+            });
+        }
+
+        res.status(200).json({
+            message: "Blog deleted successfully",
+            blog: deletedBlog
+        });
+
+    } catch (error) {
+
+        console.error("Delete blog error:", error.message);
+
+        res.status(500).json({
+            message: "Server error while deleting blog"
+        });
+
+    }
+});
+
+
 module.exports = router;
