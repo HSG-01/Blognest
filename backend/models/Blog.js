@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const blogSchema = new mongoose.Schema({
+
     title: {
         type: String,
         required: true
@@ -14,6 +15,12 @@ const blogSchema = new mongoose.Schema({
     author: {
         type: String,
         required: true
+    },
+
+    // User who created the blog
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
 
     category: {

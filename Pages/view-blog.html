@@ -1,20 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Blog - BlogNest</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>View Blog | BlogNest</title>
+
+
+    <!-- Google Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- View Blog CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../CSS/view-blog.css"
+    >
+
 </head>
+
 
 <body>
 
-    <h1>View Blog</h1>
 
-    <div id="blogContainer">
-        Loading blog...
-    </div>
-        
-    <script src="../js/view-blog.js"></script>
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <header class="blog-header">
+
+        <div class="header-inner">
+
+
+            <!-- Logo -->
+
+            <a
+                href="dashboard.html"
+                class="blog-logo"
+            >
+                BlogNest
+            </a>
+
+
+            <!-- Back Button -->
+
+            <a
+                href="dashboard.html"
+                class="back-button"
+            >
+                ← Back to Dashboard
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN BLOG AREA
+    ========================== -->
+
+    <main class="blog-page">
+
+
+        <!-- Blog Container -->
+
+        <article
+            id="blogContainer"
+            class="blog-container"
+        >
+
+            <!-- Loading State -->
+
+            <div class="loading-state">
+
+                <div class="loading-spinner"></div>
+
+                <p>
+                    Loading blog...
+                </p>
+
+            </div>
+
+        </article>
+
+
+    </main>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="../JS/view-blog.js"></script>
+
 
 </body>
+
 </html>

@@ -1,0 +1,659 @@
+/* ========================================
+   BLOGNEST - VIEW BLOG PAGE
+======================================== */
+
+
+/* ========================================
+   GLOBAL
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    background: #f6f7fb;
+
+    color: #111827;
+
+    line-height: 1.7;
+
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.blog-header {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+}
+
+
+.header-inner {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    height: 74px;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.blog-logo {
+
+    text-decoration: none;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 26px;
+
+    font-weight: 800;
+
+    color: #5b4bdb;
+
+}
+
+
+/* ========================================
+   BACK BUTTON
+======================================== */
+
+.back-button {
+
+    text-decoration: none;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 10px 17px;
+
+    border-radius: 9px;
+
+    background: #5b4bdb;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+
+}
+
+
+.back-button:hover {
+
+    background: #4c3bc7;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ========================================
+   BLOG PAGE
+======================================== */
+
+.blog-page {
+
+    width: 100%;
+
+    padding: 55px 20px 80px;
+
+}
+
+
+/* ========================================
+   BLOG CONTAINER
+======================================== */
+
+.blog-container {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    padding: 55px 65px;
+
+    box-shadow:
+        0 8px 30px rgba(17, 24, 39, 0.05);
+
+}
+
+
+/* ========================================
+   BLOG CATEGORY
+======================================== */
+
+.blog-category {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 13px;
+
+    border-radius: 30px;
+
+    background: #eeeaff;
+
+    color: #5b4bdb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* ========================================
+   BLOG TITLE
+======================================== */
+
+.blog-title {
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 42px;
+
+    line-height: 1.25;
+
+    font-weight: 800;
+
+    color: #111827;
+
+    margin-bottom: 22px;
+
+}
+
+
+/* ========================================
+   BLOG META
+======================================== */
+
+.blog-meta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 28px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    color: #667085;
+
+    font-size: 14px;
+
+}
+
+
+.meta-item {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+.meta-dot {
+
+    color: #b0b5bd;
+
+}
+
+
+/* ========================================
+   BLOG CONTENT
+======================================== */
+
+.blog-content {
+
+    margin-top: 35px;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+
+    color: #374151;
+
+    white-space: pre-line;
+
+}
+
+
+.blog-content p {
+
+    margin-bottom: 22px;
+
+}
+
+
+/* ========================================
+   BLOG ACTIONS
+======================================== */
+
+.blog-actions {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 45px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid #e5e7eb;
+
+}
+
+
+.action-left {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+.action-button {
+
+    border: none;
+
+    text-decoration: none;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.edit-button {
+
+    background: #eeeaff;
+
+    color: #5b4bdb;
+
+}
+
+
+.edit-button:hover {
+
+    background: #e2dcff;
+
+}
+
+
+.delete-button {
+
+    background: #fff0f0;
+
+    color: #dc2626;
+
+}
+
+
+.delete-button:hover {
+
+    background: #ffe0e0;
+
+}
+
+
+.dashboard-button {
+
+    background: #5b4bdb;
+
+    color: #ffffff;
+
+}
+
+
+.dashboard-button:hover {
+
+    background: #4c3bc7;
+
+}
+
+
+/* ========================================
+   LOADING STATE
+======================================== */
+
+.loading-state {
+
+    min-height: 300px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #667085;
+
+}
+
+
+.loading-spinner {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: 4px solid #eeeaff;
+
+    border-top-color: #5b4bdb;
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* ========================================
+   ERROR STATE
+======================================== */
+
+.error-state {
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+}
+
+
+.error-state h2 {
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 26px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.error-state p {
+
+    color: #667085;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* ========================================
+   RESPONSIVE - TABLET
+======================================== */
+
+@media (max-width: 768px) {
+
+    .header-inner {
+
+        height: 68px;
+
+        padding: 0 18px;
+
+    }
+
+
+    .blog-logo {
+
+        font-size: 23px;
+
+    }
+
+
+    .back-button {
+
+        padding: 9px 13px;
+
+        font-size: 13px;
+
+    }
+
+
+    .blog-page {
+
+        padding: 30px 15px 50px;
+
+    }
+
+
+    .blog-container {
+
+        padding: 38px 30px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .blog-title {
+
+        font-size: 34px;
+
+    }
+
+
+    .blog-content {
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE - MOBILE
+======================================== */
+
+@media (max-width: 520px) {
+
+    .header-inner {
+
+        height: auto;
+
+        min-height: 65px;
+
+        gap: 10px;
+
+    }
+
+
+    .blog-logo {
+
+        font-size: 21px;
+
+    }
+
+
+    .back-button {
+
+        padding: 8px 11px;
+
+        font-size: 12px;
+
+    }
+
+
+    .blog-page {
+
+        padding: 20px 10px 40px;
+
+    }
+
+
+    .blog-container {
+
+        padding: 28px 20px;
+
+        border-radius: 12px;
+
+    }
+
+
+    .blog-title {
+
+        font-size: 28px;
+
+    }
+
+
+    .blog-meta {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 7px;
+
+    }
+
+
+    .meta-dot {
+
+        display: none;
+
+    }
+
+
+    .blog-content {
+
+        margin-top: 28px;
+
+        font-size: 15px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .blog-actions {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .action-left {
+
+        width: 100%;
+
+    }
+
+
+    .action-button {
+
+        flex: 1;
+
+    }
+
+
+    .dashboard-button {
+
+        width: 100%;
+
+    }
+
+}

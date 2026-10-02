@@ -1,5 +1,7 @@
 const express = require("express");
 const Blog = require("../models/Blog");
+const User = require("../models/User");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -7,10 +9,10 @@ const router = express.Router();
 // ==============================
 // GET ALL BLOGS
 // ==============================
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
     try {
-
-        const blogs = await Blog.find().sort({ createdAt: -1 });
+        const blogs = await Blog.find()
+            .sort({ createdAt: -1 });
 
         res.status(200).json({
             message: "Blogs fetched successfully",
@@ -19,12 +21,14 @@ router.get("/", async (req, res) => {
 
     } catch (error) {
 
-        console.error("Fetch blogs error:", error.message);
+        console.error(
+            "Fetch blogs error:",
+            error.message
+        );
 
         res.status(500).json({
             message: "Server error while fetching blogs"
         });
-
     }
 });
 
@@ -32,20 +36,28 @@ router.get("/", async (req, res) => {
 // ==============================
 // CREATE BLOG
 // ==============================
-router.post("/create", async (req, res) => {
+router.post("/create", authMiddleware, async (req, res) => {
     try {
 
         const {
             title,
             content,
-            author,
             category
         } = req.body;
 
+        // Find the logged-in user
+        const user = await User.findById(req.user.userId);
+
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found"
+            });
+        }
+
         // Check required fields
-        if (!title || !content || !author) {
+        if (!title || !content) {
             return res.status(400).json({
-                message: "Title, content and author are required"
+                message: "Title and content are required"
             });
         }
 
@@ -53,7 +65,8 @@ router.post("/create", async (req, res) => {
         const newBlog = await Blog.create({
             title,
             content,
-            author,
+            author: user.name,
+            userId: user._id,
             category: category || "General",
             status: "Published",
             date: new Date().toLocaleDateString("en-IN"),
@@ -75,8 +88,6 @@ router.post("/create", async (req, res) => {
 
     }
 });
-
-
 // ==============================
 // GET SINGLE BLOG
 // ==============================
@@ -115,30 +126,31 @@ router.get("/:id", async (req, res) => {
 // ==============================
 // UPDATE BLOG
 // ==============================
-router.put("/:id", async (req, res) => {
+router.put("/:id", authMiddleware, async (req, res) => {
     try {
 
         const {
             title,
             content,
-            author,
             category
         } = req.body;
 
         // Check required fields
-        if (!title || !content || !author) {
+        if (!title || !content) {
             return res.status(400).json({
-                message: "Title, content and author are required"
+                message: "Title and content are required"
             });
         }
 
-        // Find and update blog
-        const updatedBlog = await Blog.findByIdAndUpdate(
-            req.params.id,
+        // Find and update only the logged-in user's blog
+        const updatedBlog = await Blog.findOneAndUpdate(
+            {
+                _id: req.params.id,
+                userId: req.user.userId
+            },
             {
                 title,
                 content,
-                author,
                 category: category || "General"
             },
             {
@@ -147,10 +159,10 @@ router.put("/:id", async (req, res) => {
             }
         );
 
-        // Blog not found
+        // Blog not found or does not belong to user
         if (!updatedBlog) {
             return res.status(404).json({
-                message: "Blog not found"
+                message: "Blog not found or you do not have permission to update it"
             });
         }
 
@@ -170,20 +182,22 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-
 // ==============================
 // DELETE BLOG
 // ==============================
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, async (req, res) => {
     try {
 
-        // Find and delete blog
-        const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
+        // Find and delete only the logged-in user's blog
+        const deletedBlog = await Blog.findOneAndDelete({
+            _id: req.params.id,
+            userId: req.user.userId
+        });
 
-        // Blog not found
+        // Blog not found or does not belong to user
         if (!deletedBlog) {
             return res.status(404).json({
-                message: "Blog not found"
+                message: "Blog not found or you do not have permission to delete it"
             });
         }
 

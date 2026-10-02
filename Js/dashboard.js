@@ -1,3 +1,13 @@
+// =========================
+// AUTHENTICATION CHECK
+// =========================
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "login.html";
+}
+
 const sidebar = document.getElementById("sidebar");
 const openSidebar = document.getElementById("openSidebar");
 const closeSidebar = document.getElementById("closeSidebar");
@@ -49,8 +59,13 @@ async function displayBlogs() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/blog"
-        );
+    "http://localhost:5000/api/blog",
+    {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+);
 
         const data = await response.json();
 
@@ -157,12 +172,15 @@ async function deleteBlog(blogId) {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:5000/api/blog/${blogId}`,
-            {
-                method: "DELETE"
-            }
-        );
+       const response = await fetch(
+    `http://localhost:5000/api/blog/${blogId}`,
+    {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+);
 
 
         const data =
@@ -529,3 +547,14 @@ function updateDashboardStats() {
 // =========================
 
 displayBlogs();
+
+// ========================================
+// LOGOUT
+// ========================================
+
+function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    window.location.href = "login.html";
+}

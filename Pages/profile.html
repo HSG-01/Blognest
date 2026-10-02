@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Profile | BlogNest</title>
+
+
+    <!-- Google Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/dashboard.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard-layout">
+
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+
+            <div class="sidebar-top">
+
+
+                <a
+                    href="../index.html"
+                    class="dashboard-logo"
+                >
+                    BlogNest
+                </a>
+
+
+                <button
+                    class="close-sidebar"
+                    id="closeSidebar"
+                >
+                    ×
+                </button>
+
+
+                <nav class="sidebar-nav">
+
+
+                    <a
+                        href="dashboard.html"
+                        class="sidebar-link"
+                    >
+                        <span>▣</span>
+                        Dashboard
+                    </a>
+
+
+                    <a
+                        href="dashboard.html"
+                        class="sidebar-link"
+                    >
+                        <span>▤</span>
+                        My Blogs
+                    </a>
+
+
+                    <a
+                        href="create-blog.html"
+                        class="sidebar-link"
+                    >
+                        <span>＋</span>
+                        Create Blog
+                    </a>
+
+
+                    <a
+                        href="profile.html"
+                        class="sidebar-link active"
+                    >
+                        <span>◯</span>
+                        Profile
+                    </a>
+
+
+                </nav>
+
+
+            </div>
+
+
+            <div class="sidebar-bottom">
+
+
+                <a href="#" onclick="logout(); return false;">
+                    <span>↪</span>
+                    Logout
+                </a>
+
+
+            </div>
+
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+
+        <main class="dashboard-main">
+
+
+            <!-- TOPBAR -->
+
+
+            <header class="dashboard-topbar">
+
+
+                <button
+                    class="menu-button"
+                    id="openSidebar"
+                >
+                    ☰
+                </button>
+
+
+                <div class="topbar-title">
+                    Profile
+                </div>
+
+
+                <a
+                    href="dashboard.html"
+                    class="topbar-create"
+                >
+                    Back to Dashboard
+                </a>
+
+
+            </header>
+
+
+            <!-- CONTENT -->
+
+
+            <div class="dashboard-content">
+
+
+                <!-- PAGE HEADING -->
+
+
+                <section class="welcome-section">
+
+
+                    <div>
+
+                        <span class="welcome-label">
+                            ACCOUNT
+                        </span>
+
+
+                        <h1>
+                            My Profile
+                        </h1>
+
+
+                        <p>
+                            View your BlogNest account information.
+                        </p>
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- PROFILE CARD -->
+
+
+                <section class="quick-card">
+
+
+                    <div>
+
+
+                        <span
+                            class="quick-icon"
+                            id="profileAvatar"
+                        >
+                            👤
+                        </span>
+
+
+                        <h3 id="profileName">
+                            Loading...
+                        </h3>
+
+
+                        <p id="profileEmail">
+                            Loading...
+                        </p>
+
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- ACCOUNT DETAILS -->
+
+
+                <section
+                    class="blog-editor-card"
+                    style="margin-top: 25px;"
+                >
+
+
+                    <div class="editor-group">
+
+
+                        <label>
+                            Full Name
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="profileNameInput"
+                            readonly
+                        >
+
+
+                    </div>
+
+
+                    <div class="editor-group">
+
+
+                        <label>
+                            Email Address
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="profileEmailInput"
+                            readonly
+                        >
+
+
+                    </div>
+
+
+                    <div class="editor-actions">
+
+
+                        <a
+                            href="dashboard.html"
+                            class="secondary-editor-btn"
+                        >
+                            Back to Dashboard
+                        </a>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+    <!-- Profile JavaScript -->
+
+    <script src="../JS/profile.js"></script>
+
+</body>
+
+</html>

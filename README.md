@@ -8,7 +8,9 @@ BlogNest is a responsive Blog Application developed as part of my Codomax Digita
 
 BlogNest is a modern blog platform where users can explore blog content, create an account, log in, manage their dashboard, and create and manage blog posts.
 
-The project is being developed module-by-module, starting with frontend development and progressing toward backend API integration, database persistence, and complete CRUD operations.
+The project is being developed module-by-module, starting with frontend development and progressing toward backend API integration, database persistence, complete CRUD operations, secure authentication, authorization, and user profile functionality.
+
+---
 
 ## Module 1 – Frontend Development
 
@@ -28,6 +30,8 @@ The frontend provides the user interface and basic client-side functionality.
 - Responsive Navigation
 - Mobile-Friendly Sidebar
 - Responsive Design for Desktop, Tablet, and Mobile
+
+---
 
 ## Module 2 – Backend Development
 
@@ -49,6 +53,8 @@ The backend was developed using Node.js and Express.js.
 - JSON request and response handling
 - CORS configuration
 - Environment variable configuration
+
+---
 
 ## Module 3 – Database Integration
 
@@ -90,6 +96,7 @@ Each blog can contain:
 - Title
 - Content
 - Author
+- User ID
 - Category
 - Status
 - Date
@@ -102,6 +109,8 @@ Each blog can contain:
 **Completed**
 
 MongoDB Atlas is successfully connected to the BlogNest backend, and users and blog posts are being stored and retrieved from the database.
+
+---
 
 ## Module 4 – CRUD Operations
 
@@ -204,6 +213,104 @@ These values are calculated from the blogs retrieved from MongoDB instead of usi
 
 Complete CRUD functionality has been implemented and tested successfully. Search, category filtering, and dynamic dashboard statistics have also been implemented.
 
+---
+
+## Module 5 – Authentication, Authorization & User Profile
+
+Module 5 focuses on securing the BlogNest application using JWT authentication, protected routes, user authorization, profile functionality, and logout.
+
+### Authentication Features
+
+- JWT-based user authentication
+- Secure login using JSON Web Tokens
+- JWT token generation after successful login
+- Token storage using browser Local Storage
+- User information storage using browser Local Storage
+- Authentication middleware for protected API routes
+- Token verification using JWT
+- Expired or invalid token handling
+- Protected dashboard access
+- Protected blog creation
+- Protected blog update
+- Protected blog deletion
+
+### Authorization Features
+
+BlogNest implements owner-based authorization for blog modification.
+
+- All logged-in users can view available blogs
+- Users can create their own blog posts
+- Users can edit their own blog posts
+- Users cannot edit another user's blog
+- Users can delete their own blog posts
+- Users cannot delete another user's blog
+- Blog ownership is verified using the authenticated user's ID
+- Existing older blogs are not automatically assigned to newly registered users
+
+### Protected Routes
+
+The following operations require authentication:
+
+- Get blogs
+- Create blog
+- Update blog
+- Delete blog
+
+The individual blog viewing route remains available for viewing blog details.
+
+### User Profile
+
+A user profile page has been added.
+
+The profile page displays:
+
+- User name
+- User email
+- Profile information
+- Back to Dashboard navigation
+
+User information is retrieved from the authenticated user's stored profile data.
+
+### Logout
+
+Logout functionality has been implemented.
+
+When the user logs out:
+
+- JWT token is removed from Local Storage
+- Stored user information is removed from Local Storage
+- User is redirected to the Login page
+- Protected dashboard access is no longer available without logging in again
+
+Logout is available from:
+
+- Dashboard
+- Profile page
+
+### Security Testing
+
+Module 5 authorization has been tested successfully.
+
+Example:
+
+- User A can edit User A's blog
+- User A can delete User A's blog
+- User A can view User B's blog
+- User A cannot edit User B's blog
+- User A cannot delete User B's blog
+
+Unauthorized update attempts return:
+
+`Blog not found or you do not have permission to update it`
+
+### Module 5 Status
+
+**Completed**
+
+JWT authentication, protected routes, owner-based authorization, user profile functionality, and logout have been implemented and tested successfully.
+
+---
+
 ## Pages
 
 The project contains the following pages:
@@ -214,6 +321,9 @@ The project contains the following pages:
 4. Dashboard
 5. Create Blog
 6. View Blog
+7. Profile
+
+---
 
 ## Technologies Used
 
@@ -231,6 +341,7 @@ The project contains the following pages:
 - CORS
 - dotenv
 - bcrypt
+- JSON Web Token (JWT)
 
 ### Database
 
@@ -245,13 +356,17 @@ The project contains the following pages:
 - Visual Studio Code
 - npm
 
+---
+
 ## Project Structure
 
 ```text
 BlogNest/
-
 │
 ├── backend/
+│   ├── middleware/
+│   │   └── authMiddleware.js
+│   │
 │   ├── models/
 │   │   ├── Blog.js
 │   │   └── User.js
@@ -268,7 +383,8 @@ BlogNest/
 ├── CSS/
 │   ├── auth.css
 │   ├── dashboard.css
-│   └── style.css
+│   ├── style.css
+│   └── view-blog.css
 │
 ├── images/
 │
@@ -277,12 +393,14 @@ BlogNest/
 │   ├── blog.js
 │   ├── dashboard.js
 │   ├── main.js
+│   ├── profile.js
 │   └── view-blog.js
 │
 ├── Pages/
 │   ├── create-blog.html
 │   ├── dashboard.html
 │   ├── login.html
+│   ├── profile.html
 │   ├── register.html
 │   └── view-blog.html
 │

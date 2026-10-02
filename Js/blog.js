@@ -1,27 +1,52 @@
 console.log("BLOG JS LOADED");
 
+// ========================================
+// GET FORM ELEMENTS
+// ========================================
+
 const blogForm = document.getElementById("blogForm");
+
 const blogTitle = document.getElementById("blogTitle");
+
 const blogContent = document.getElementById("blogContent");
+
 const blogCategory = document.getElementById("blogCategory");
 
 const titleCount = document.getElementById("titleCount");
+
 const contentCount = document.getElementById("contentCount");
+
 const blogPreview = document.getElementById("blogPreview");
 
 const saveDraftBtn = document.getElementById("saveDraftBtn");
 
 
 // ========================================
+// AUTHENTICATION CHECK
+// ========================================
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "login.html";
+}
+
+
+// ========================================
 // CHECK WHETHER THIS IS CREATE OR EDIT MODE
 // ========================================
 
-const urlParams = new URLSearchParams(window.location.search);
-const editBlogId = urlParams.get("id");
+const urlParams =
+    new URLSearchParams(window.location.search);
 
-const isEditMode = Boolean(editBlogId);
+const editBlogId =
+    urlParams.get("id");
+
+const isEditMode =
+    Boolean(editBlogId);
 
 console.log("EDIT BLOG ID:", editBlogId);
+
 console.log("EDIT MODE:", isEditMode);
 
 
@@ -43,30 +68,24 @@ if (isEditMode) {
     const submitButton =
         document.querySelector(".primary-editor-btn");
 
-
     if (pageTitle) {
         pageTitle.textContent = "Edit Blog";
     }
-
 
     if (welcomeLabel) {
         welcomeLabel.textContent = "EDIT CONTENT";
     }
 
-
     if (welcomeTitle) {
         welcomeTitle.textContent = "Edit Your Blog";
     }
-
 
     if (submitButton) {
         submitButton.textContent = "Update Blog";
     }
 
-
     // Load existing blog
     loadBlogForEditing();
-
 }
 
 
@@ -81,22 +100,19 @@ async function loadBlogForEditing() {
         editBlogId
     );
 
-
     try {
 
         const response = await fetch(
             `http://localhost:5000/api/blog/${editBlogId}`
         );
 
-
-        const data = await response.json();
-
+        const data =
+            await response.json();
 
         console.log(
             "Blog API response:",
             data
         );
-
 
         if (!response.ok) {
 
@@ -106,24 +122,26 @@ async function loadBlogForEditing() {
             );
 
             return;
-
         }
 
-
-        const blog = data.blog;
-
+        const blog =
+            data.blog;
 
         // Fill existing title
         if (blogTitle) {
-            blogTitle.value = blog.title || "";
-        }
 
+            blogTitle.value =
+                blog.title || "";
+
+        }
 
         // Fill existing content
         if (blogContent) {
-            blogContent.value = blog.content || "";
-        }
 
+            blogContent.value =
+                blog.content || "";
+
+        }
 
         // Fill existing category
         if (blogCategory) {
@@ -133,19 +151,15 @@ async function loadBlogForEditing() {
 
         }
 
-
         // Update counters
         updateCounters();
-
 
         // Update preview
         updatePreview();
 
-
         console.log(
             "Existing blog loaded successfully."
         );
-
 
     } catch (error) {
 
@@ -153,7 +167,6 @@ async function loadBlogForEditing() {
             "Error loading blog:",
             error
         );
-
 
         alert(
             "Failed to load blog for editing."
@@ -231,7 +244,6 @@ function updateCounters() {
 
     }
 
-
     if (contentCount && blogContent) {
 
         contentCount.textContent =
@@ -259,7 +271,6 @@ function updatePreview() {
 
     }
 
-
     const title =
         blogTitle.value.trim();
 
@@ -268,7 +279,6 @@ function updatePreview() {
 
     const category =
         blogCategory.value;
-
 
     if (
         !title &&
@@ -284,15 +294,12 @@ function updatePreview() {
         `;
 
         return;
-
     }
-
 
     const categoryText =
         blogCategory.options[
             blogCategory.selectedIndex
         ]?.text || "";
-
 
     blogPreview.innerHTML = `
 
@@ -302,7 +309,7 @@ function updatePreview() {
                     <span class="preview-category">
                         ${categoryText}
                     </span>
-                  `
+                `
                 : ""
         }
 
@@ -333,7 +340,6 @@ if (saveDraftBtn) {
             const title =
                 blogTitle.value.trim();
 
-
             if (!title) {
 
                 alert(
@@ -343,9 +349,7 @@ if (saveDraftBtn) {
                 blogTitle.focus();
 
                 return;
-
             }
-
 
             alert(
                 "Draft functionality is not connected to the database yet."
@@ -369,7 +373,6 @@ if (blogForm) {
 
             event.preventDefault();
 
-
             const title =
                 blogTitle.value.trim();
 
@@ -378,7 +381,6 @@ if (blogForm) {
 
             const content =
                 blogContent.value.trim();
-
 
             // Validate fields
             if (
@@ -392,7 +394,6 @@ if (blogForm) {
                 );
 
                 return;
-
             }
 
 
@@ -407,7 +408,6 @@ if (blogForm) {
                     editBlogId
                 );
 
-
                 try {
 
                     const response =
@@ -417,8 +417,8 @@ if (blogForm) {
                                 method: "PUT",
 
                                 headers: {
-                                    "Content-Type":
-                                        "application/json"
+                                    "Content-Type": "application/json",
+                                    "Authorization": `Bearer ${token}`
                                 },
 
                                 body: JSON.stringify({
@@ -427,8 +427,6 @@ if (blogForm) {
 
                                     content: content,
 
-                                    author: "Harish",
-
                                     category: category
 
                                 })
@@ -436,16 +434,13 @@ if (blogForm) {
                             }
                         );
 
-
                     const data =
                         await response.json();
-
 
                     console.log(
                         "Update response:",
                         data
                     );
-
 
                     if (!response.ok) {
 
@@ -458,17 +453,14 @@ if (blogForm) {
 
                     }
 
-
                     alert(
                         data.message ||
                         "Blog updated successfully!"
                     );
 
-
                     // Go back to dashboard
                     window.location.href =
                         "dashboard.html";
-
 
                 } catch (error) {
 
@@ -477,13 +469,11 @@ if (blogForm) {
                         error
                     );
 
-
                     alert(
                         "Failed to update blog."
                     );
 
                 }
-
 
                 return;
 
@@ -503,8 +493,8 @@ if (blogForm) {
                             method: "POST",
 
                             headers: {
-                                "Content-Type":
-                                    "application/json"
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${token}`
                             },
 
                             body: JSON.stringify({
@@ -513,8 +503,6 @@ if (blogForm) {
 
                                 content: content,
 
-                                author: "Harish",
-
                                 category: category
 
                             })
@@ -522,10 +510,8 @@ if (blogForm) {
                         }
                     );
 
-
                 const data =
                     await response.json();
-
 
                 if (!response.ok) {
 
@@ -538,17 +524,14 @@ if (blogForm) {
 
                 }
 
-
                 alert(
                     data.message ||
                     "Blog published successfully!"
                 );
 
-
                 // Go back to dashboard
                 window.location.href =
                     "dashboard.html";
-
 
             } catch (error) {
 
@@ -556,7 +539,6 @@ if (blogForm) {
                     "Create blog error:",
                     error
                 );
-
 
                 alert(
                     "Failed to publish blog."
