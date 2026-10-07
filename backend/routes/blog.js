@@ -1,6 +1,7 @@
 const express = require("express");
 const Blog = require("../models/Blog");
 const User = require("../models/User");
+const ViewedBlog = require("../models/ViewedBlog");
 const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
@@ -84,6 +85,101 @@ router.post("/create", authMiddleware, async (req, res) => {
 
         res.status(500).json({
             message: "Server error while creating blog"
+        });
+
+    }
+});
+
+// ========================================
+// GET BLOGS VIEWED BY CURRENT USER
+// ========================================
+
+router.get("/viewed/me", authMiddleware, async (req, res) => {
+    try {
+        const userId = req.user.userId;
+
+        const viewedBlogs = await ViewedBlog.find({
+            userId: userId
+        })
+            .sort({ viewedAt: -1 })
+            .populate("blogId");
+
+        const blogs = viewedBlogs
+            .filter(item => item.blogId)
+            .map(item => item.blogId);
+
+        res.status(200).json({
+            blogs: blogs
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Get viewed blogs error:",
+            error.message
+        );
+
+        res.status(500).json({
+            message: "Server error while fetching viewed blogs"
+        });
+    }
+});
+
+// ==============================
+// RECORD BLOG VIEW FOR LOGGED-IN USER
+// ==============================
+router.post("/:id/view", authMiddleware, async (req, res) => {
+    try {
+
+        const blogId = req.params.id;
+        const userId = req.user.userId;
+
+        // Check if blog exists
+        const blog = await Blog.findById(blogId);
+
+        if (!blog) {
+            return res.status(404).json({
+                message: "Blog not found"
+            });
+        }
+
+        // Record this blog as viewed by this user
+        await ViewedBlog.findOneAndUpdate(
+            {
+                userId: userId,
+                blogId: blogId
+            },
+            {
+                $setOnInsert: {
+                    userId: userId,
+                    blogId: blogId,
+                    viewedAt: new Date()
+                }
+            },
+            {
+                upsert: true,
+                new: true
+            }
+        );
+
+        // Increase total blog views
+        blog.views = (blog.views || 0) + 1;
+        await blog.save();
+
+        res.status(200).json({
+            message: "Blog view recorded successfully",
+            blog: blog
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Record blog view error:",
+            error.message
+        );
+
+        res.status(500).json({
+            message: "Server error while recording blog view"
         });
 
     }

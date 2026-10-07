@@ -6,6 +6,14 @@ const blogId =
 
 
 // ========================================
+// GET JWT TOKEN
+// ========================================
+
+const token =
+    localStorage.getItem("token");
+
+
+// ========================================
 // LOAD INDIVIDUAL BLOG
 // ========================================
 
@@ -44,14 +52,43 @@ async function loadBlog() {
 
     try {
 
+        let response;
+
+
         // ========================================
-        // FETCH BLOG
+        // LOGGED-IN USER
+        // RECORD VIEWED BLOG
         // ========================================
 
-        const response =
-            await fetch(
-                `http://localhost:5000/api/blog/${blogId}`
-            );
+        if (token) {
+
+            response =
+                await fetch(
+                    `http://localhost:5000/api/blog/${blogId}/view`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Authorization":
+                                `Bearer ${token}`
+                        }
+                    }
+                );
+
+        }
+
+        // ========================================
+        // PUBLIC USER
+        // FETCH BLOG NORMALLY
+        // ========================================
+
+        else {
+
+            response =
+                await fetch(
+                    `http://localhost:5000/api/blog/${blogId}`
+                );
+
+        }
 
 
         const data =
@@ -149,6 +186,96 @@ function displayBlog(blog) {
         blog.views || 0;
 
 
+    // ========================================
+    // GET CURRENT LOGGED-IN USER
+    // ========================================
+
+    let currentUser = null;
+
+
+    const userData =
+        localStorage.getItem("user");
+
+
+    if (userData) {
+
+        try {
+
+            currentUser =
+                JSON.parse(userData);
+
+        } catch (error) {
+
+            console.error(
+                "Error reading logged-in user:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // ========================================
+    // CHECK BLOG OWNERSHIP
+    // ========================================
+    // Edit and Delete are shown only when
+    // the logged-in user created this blog.
+    //
+    // Older blogs without userId will not
+    // show Edit/Delete buttons.
+
+    const currentUserId =
+        currentUser &&
+        (
+            currentUser._id ||
+            currentUser.id ||
+            currentUser.userId
+        );
+
+
+    const blogOwnerId =
+        blog.userId;
+
+
+    const isOwner =
+        currentUserId &&
+        blogOwnerId &&
+        String(currentUserId) ===
+        String(blogOwnerId);
+
+
+    // ========================================
+    // OWNER-ONLY ACTION BUTTONS
+    // ========================================
+
+    let ownerActions = "";
+
+
+    if (isOwner) {
+
+        ownerActions = `
+
+            <a
+                href="create-blog.html?id=${blog._id}"
+                class="action-button edit-button"
+            >
+                ✏️ Edit Blog
+            </a>
+
+
+            <button
+                class="action-button delete-button"
+                onclick="deleteBlog('${blog._id}')"
+            >
+                🗑️ Delete Blog
+            </button>
+
+        `;
+
+    }
+
+
     container.innerHTML = `
 
         <!-- Category -->
@@ -233,23 +360,9 @@ function displayBlog(blog) {
 
         <div class="blog-actions">
 
-
             <div class="action-left">
 
-                <a
-                    href="create-blog.html?id=${blog._id}"
-                    class="action-button edit-button"
-                >
-                    ✏️ Edit Blog
-                </a>
-
-
-                <button
-                    class="action-button delete-button"
-                    onclick="deleteBlog('${blog._id}')"
-                >
-                    🗑️ Delete Blog
-                </button>
+                ${ownerActions}
 
             </div>
 
@@ -268,10 +381,6 @@ function displayBlog(blog) {
 
 }
 
-
-// ========================================
-// DELETE BLOG
-// ========================================
 
 // ========================================
 // DELETE BLOG
@@ -296,11 +405,11 @@ async function deleteBlog(blogId) {
     // GET JWT TOKEN
     // ========================================
 
-    const token =
+    const deleteToken =
         localStorage.getItem("token");
 
 
-    if (!token) {
+    if (!deleteToken) {
 
         alert(
             "Please login to delete this blog."
@@ -322,7 +431,8 @@ async function deleteBlog(blogId) {
                 {
                     method: "DELETE",
                     headers: {
-                        "Authorization": `Bearer ${token}`
+                        "Authorization":
+                            `Bearer ${deleteToken}`
                     }
                 }
             );

@@ -447,3 +447,160 @@ a {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================
+   DARK / LIGHT MODE TOGGLE
+========================= */
+
+.theme-toggle {
+    border: 1px solid #d8dce5;
+    background: #ffffff;
+    color: #27324a;
+    padding: 9px 13px;
+    border-radius: 9px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.theme-toggle:hover {
+    border-color: #5b4bdb;
+    color: #5b4bdb;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark-mode {
+    color: #e7eaf0;
+    background: #111827;
+}
+
+
+/* Navbar */
+
+body.dark-mode .navbar {
+    background: rgba(17, 24, 39, 0.96);
+    border-bottom-color: #273244;
+}
+
+body.dark-mode .logo {
+    color: #f3f4f6;
+}
+
+body.dark-mode .nav-links a {
+    color: #aeb7c8;
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links a.active {
+    color: #9b8cff;
+}
+
+
+/* Theme button */
+
+body.dark-mode .theme-toggle {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+
+/* Hero */
+
+body.dark-mode .hero {
+    background:
+        radial-gradient(
+            circle at top right,
+            #28224f 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #151b2b 0%,
+            #111827 100%
+        );
+}
+
+body.dark-mode .hero h1 {
+    color: #f3f4f6;
+}
+
+body.dark-mode .hero p {
+    color: #aeb7c8;
+}
+
+body.dark-mode .hero-badge {
+    background: #29234d;
+    color: #a99cff;
+}
+
+
+/* Secondary button */
+
+body.dark-mode .btn-secondary {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+
+/* Sections */
+
+body.dark-mode .section-heading h2 {
+    color: #f3f4f6;
+}
+
+body.dark-mode .view-all {
+    color: #a99cff;
+}
+
+
+/* Blog cards */
+
+body.dark-mode .blog-card {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+body.dark-mode .blog-content h3 {
+    color: #f3f4f6;
+}
+
+body.dark-mode .blog-content p {
+    color: #aeb7c8;
+}
+
+body.dark-mode .blog-meta {
+    color: #8992a3;
+}
+
+
+/* Categories */
+
+body.dark-mode .categories-section {
+    background: #151b2b;
+}
+
+body.dark-mode .category-card {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+body.dark-mode .category-card:hover {
+    border-color: #7c6ce8;
+}
+
+
+/* Footer */
+
+body.dark-mode .footer {
+    background: #0b1120;
+}

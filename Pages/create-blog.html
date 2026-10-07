@@ -16,6 +16,35 @@
 
     <!-- Dashboard / Blog CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
+
+    <!-- Sidebar Icon Styling -->
+    <style>
+        .sidebar-icon-wrap {
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sidebar-icon {
+            width: 19px;
+            height: 19px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .sidebar-link,
+        .sidebar-bottom a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,35 +69,148 @@
 
                 <nav class="sidebar-nav">
 
+                    <!-- Dashboard -->
                     <a href="dashboard.html" class="sidebar-link">
-                        <span>▣</span>
-                        Dashboard
+
+                        <span class="sidebar-icon-wrap">
+                            <svg
+                                class="sidebar-icon"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path d="M3 10.5 12 3l9 7.5"/>
+                                <path d="M5.5 9.5V21h13V9.5"/>
+                                <path d="M9.5 21v-7h5v7"/>
+                            </svg>
+                        </span>
+
+                        <span>Dashboard</span>
+
                     </a>
 
-                    <a href="#" class="sidebar-link">
-                        <span>▤</span>
-                        My Blogs
+
+                    <!-- My Blogs -->
+                    <a
+                        href="dashboard.html?view=my-blogs"
+                        class="sidebar-link"
+                    >
+
+                        <span class="sidebar-icon-wrap">
+                            <svg
+                                class="sidebar-icon"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"
+                                />
+                                <path d="M4 5.5v16"/>
+                                <path d="M8 7h8M8 11h8"/>
+                            </svg>
+                        </span>
+
+                        <span>My Blogs</span>
+
                     </a>
 
-                    <a href="create-blog.html" class="sidebar-link active">
-                        <span>＋</span>
-                        Create Blog
+
+                    <!-- Create Blog - ACTIVE -->
+                    <a
+                        href="create-blog.html"
+                        class="sidebar-link active"
+                    >
+
+                        <span class="sidebar-icon-wrap">
+                            <svg
+                                class="sidebar-icon"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path d="M12 20h9"/>
+                                <path
+                                    d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"
+                                />
+                            </svg>
+                        </span>
+
+                        <span>Create Blog</span>
+
                     </a>
 
-                    <a href="#" class="sidebar-link">
-                        <span>◯</span>
-                        Profile
+
+                    <!-- Blogs -->
+                    <a
+                        href="dashboard.html?view=blogs"
+                        class="sidebar-link"
+                    >
+
+                        <span class="sidebar-icon-wrap">
+                            <svg
+                                class="sidebar-icon"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M3 12h18"/>
+                                <path d="M12 3a14 14 0 0 1 0 18"/>
+                                <path d="M12 3a14 14 0 0 0 0 18"/>
+                            </svg>
+                        </span>
+
+                        <span>Blogs</span>
+
+                    </a>
+
+
+                    <!-- Profile -->
+                    <a
+                        href="profile.html"
+                        class="sidebar-link"
+                    >
+
+                        <span class="sidebar-icon-wrap">
+                            <svg
+                                class="sidebar-icon"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M4 21a8 8 0 0 1 16 0"/>
+                            </svg>
+                        </span>
+
+                        <span>Profile</span>
+
                     </a>
 
                 </nav>
 
             </div>
 
+
+            <!-- Logout -->
+
             <div class="sidebar-bottom">
 
-                <a href="../index.html" class="sidebar-link logout-link">
-                    <span>↪</span>
-                    Logout
+                <a
+                    href="../index.html"
+                    class="sidebar-link logout-link"
+                >
+
+                    <span class="sidebar-icon-wrap">
+                        <svg
+                            class="sidebar-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 17l5-5-5-5"/>
+                            <path d="M15 12H3"/>
+                            <path d="M21 3v18"/>
+                        </svg>
+                    </span>
+
+                    <span>Logout</span>
+
                 </a>
 
             </div>
@@ -92,7 +234,10 @@
                     Create Blog
                 </div>
 
-                <a href="dashboard.html" class="topbar-create">
+                <a
+                    href="dashboard.html"
+                    class="topbar-create"
+                >
                     Back to Dashboard
                 </a>
 
@@ -106,16 +251,20 @@
                 <section class="welcome-section">
 
                     <div>
+
                         <span class="welcome-label">
                             CREATE CONTENT
                         </span>
 
-                        <h1>Create a New Blog</h1>
+                        <h1>
+                            Create a New Blog
+                        </h1>
 
                         <p>
                             Share your ideas, knowledge, and experiences
                             with the BlogNest community.
                         </p>
+
                     </div>
 
                 </section>
@@ -145,8 +294,15 @@
                             >
 
                             <div class="field-hint">
-                                <span>Write a clear and engaging title.</span>
-                                <span id="titleCount">0 / 120</span>
+
+                                <span>
+                                    Write a clear and engaging title.
+                                </span>
+
+                                <span id="titleCount">
+                                    0 / 120
+                                </span>
+
                             </div>
 
                         </div>
@@ -167,6 +323,7 @@
                                     name="blogCategory"
                                     required
                                 >
+
                                     <option value="">
                                         Select category
                                     </option>
@@ -237,6 +394,7 @@
                             ></textarea>
 
                             <div class="field-hint">
+
                                 <span>
                                     Share something useful with your readers.
                                 </span>
@@ -244,6 +402,7 @@
                                 <span id="contentCount">
                                     0 characters
                                 </span>
+
                             </div>
 
                         </div>
@@ -257,7 +416,10 @@
                                 Live Preview
                             </label>
 
-                            <div class="blog-preview" id="blogPreview">
+                            <div
+                                class="blog-preview"
+                                id="blogPreview"
+                            >
 
                                 <span class="preview-placeholder">
                                     Your blog title and content preview
@@ -301,6 +463,7 @@
     </div>
 
 
-<script src="../JS/blog.js"></script>
+    <script src="../JS/blog.js"></script>
+
 </body>
 </html>

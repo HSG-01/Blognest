@@ -2,13 +2,11 @@
 
 > Ideas Worth Sharing. Stories Worth Reading.
 
-BlogNest is a responsive Blog Application developed as part of my Codomax Digital Solutions Full Stack Web Development Internship.
+BlogNest is a responsive Full Stack Blog Application developed as part of my Codomax Digital Solutions Full Stack Web Development Internship.
 
-## About the Project
+BlogNest allows users to register, log in securely, explore blog content, create and manage their own blog posts, view previously visited blogs, search and filter blog content, and manage their profile through a modern responsive interface.
 
-BlogNest is a modern blog platform where users can explore blog content, create an account, log in, manage their dashboard, and create and manage blog posts.
-
-The project is being developed module-by-module, starting with frontend development and progressing toward backend API integration, database persistence, complete CRUD operations, secure authentication, authorization, and user profile functionality.
+The project was developed module-by-module, progressing from frontend development to backend API integration, database persistence, CRUD operations, JWT authentication, authorization, user profile functionality, personalized dashboards, and final project preparation for deployment.
 
 ---
 
@@ -23,6 +21,8 @@ The frontend provides the user interface and basic client-side functionality.
 - User Registration Interface
 - Responsive Dashboard
 - Create Blog Interface
+- View Blog Interface
+- User Profile Interface
 - Blog Title Character Counter
 - Blog Content Character Counter
 - Live Blog Preview
@@ -30,6 +30,7 @@ The frontend provides the user interface and basic client-side functionality.
 - Responsive Navigation
 - Mobile-Friendly Sidebar
 - Responsive Design for Desktop, Tablet, and Mobile
+- Dark and Light Theme Support
 
 ---
 
@@ -48,7 +49,8 @@ The backend was developed using Node.js and Express.js.
 - Get Individual Blog API
 - Update Blog API
 - Delete Blog API
-- View Blog API integration
+- Blog View API
+- Viewed Blogs API
 - Frontend and Backend Integration
 - JSON request and response handling
 - CORS configuration
@@ -75,6 +77,7 @@ Database integration has been completed using MongoDB Atlas and Mongoose.
 - Retrieve individual blog details using MongoDB ObjectId
 - Blog view counter
 - Persistent data after server restart
+- User-specific viewed blog records
 
 ### Authentication
 
@@ -104,11 +107,23 @@ Each blog can contain:
 - Created timestamp
 - Updated timestamp
 
+### Viewed Blog Database
+
+BlogNest also maintains user-specific blog viewing information.
+
+Viewed blog records contain:
+
+- User ID
+- Blog ID
+- Viewed timestamp
+
+This allows the dashboard to display blogs that have been previously viewed by the logged-in user.
+
 ### Module 3 Status
 
 **Completed**
 
-MongoDB Atlas is successfully connected to the BlogNest backend, and users and blog posts are being stored and retrieved from the database.
+MongoDB Atlas is successfully connected to the BlogNest backend, and users, blog posts, and viewed blog information are stored and retrieved from the database.
 
 ---
 
@@ -255,6 +270,8 @@ The following operations require authentication:
 - Create blog
 - Update blog
 - Delete blog
+- Record viewed blog
+- Retrieve user's viewed blogs
 
 The individual blog viewing route remains available for viewing blog details.
 
@@ -279,13 +296,10 @@ When the user logs out:
 
 - JWT token is removed from Local Storage
 - Stored user information is removed from Local Storage
-- User is redirected to the Login page
+- User is redirected away from the protected dashboard
 - Protected dashboard access is no longer available without logging in again
 
-Logout is available from:
-
-- Dashboard
-- Profile page
+Logout functionality is available from the application dashboard and profile interface.
 
 ### Security Testing
 
@@ -308,6 +322,149 @@ Unauthorized update attempts return:
 **Completed**
 
 JWT authentication, protected routes, owner-based authorization, user profile functionality, and logout have been implemented and tested successfully.
+
+---
+
+## Module 6 – Final Project & Deployment
+
+Module 6 focuses on finalizing the complete Full Stack Blog Application, improving the user interface, fixing bugs, ensuring responsive behavior, preparing the project documentation, and deploying the application.
+
+### Final Project Features
+
+The completed BlogNest application includes:
+
+- Full Stack Blog Application
+- Responsive frontend
+- Node.js and Express.js backend
+- MongoDB Atlas database
+- User registration and login
+- JWT authentication
+- Protected API routes
+- Owner-based blog authorization
+- Complete blog CRUD operations
+- Blog search
+- Category filtering
+- Dynamic dashboard statistics
+- Individual blog viewing
+- Blog view tracking
+- User-specific viewed blogs
+- User-specific My Blogs section
+- All Blogs section
+- User profile page
+- Logout functionality
+- Dark and Light theme support
+- Responsive sidebar navigation
+- Mobile-friendly interface
+- Dynamic user greeting
+- Owner-only Edit and Delete controls
+- Responsive Dashboard
+- Responsive Create Blog page
+- Responsive View Blog page
+- Responsive Profile page
+
+### Personalized Dashboard
+
+The dashboard has been enhanced to provide different views for the logged-in user.
+
+#### Dashboard
+
+Displays blogs previously viewed by the current user.
+
+#### My Blogs
+
+Displays only blogs created by the currently logged-in user.
+
+#### Blogs
+
+Displays all available blogs and provides:
+
+- Search
+- Category filtering
+- Blog viewing
+
+Older blogs that do not belong to the current user are not automatically assigned to the newly registered user.
+
+### Sidebar Navigation
+
+The application includes a consistent sidebar navigation system.
+
+Available navigation options include:
+
+- Dashboard
+- My Blogs
+- Create Blog
+- Blogs
+- Profile
+- Logout
+
+The active page/view is highlighted for easier navigation.
+
+### User Experience Improvements
+
+The final application includes several UI and UX improvements:
+
+- Modern BlogNest dashboard interface
+- Consistent sidebar design
+- Responsive navigation
+- Mobile-friendly layout
+- Dark and Light theme support
+- Dynamic welcome message
+- Improved dashboard navigation
+- Improved Create Blog navigation
+- Consistent page structure
+- Owner-specific action buttons
+- Search and category filtering
+- Improved blog management experience
+
+### Final Testing
+
+The application has been tested for:
+
+- User registration
+- User login
+- JWT authentication
+- Protected routes
+- Blog creation
+- Blog viewing
+- Blog updating
+- Blog deletion
+- Search functionality
+- Category filtering
+- Dashboard statistics
+- My Blogs functionality
+- Viewed Blogs functionality
+- Owner-only Edit/Delete authorization
+- User profile
+- Logout functionality
+- Dark/Light theme
+- Sidebar navigation
+- Responsive interface
+
+### Deployment
+
+The BlogNest application has been finalized and prepared for deployment.
+
+The final deployment will be completed using one of the supported deployment platforms:
+
+- Vercel
+- Netlify
+- Render
+
+### Module 6 Status
+
+**Development Completed – Final Deployment Pending**
+
+The Full Stack Blog Application, final UI improvements, bug fixes, responsive design, and professional project documentation have been completed.
+
+The remaining Module 6 tasks are:
+
+1. Push the final project code to GitHub
+2. Deploy the application
+3. Test the deployed application
+4. Obtain the GitHub Repository Link
+5. Obtain the Live Website Link
+6. Publish the final LinkedIn project post
+7. Submit the required links
 
 ---
 
@@ -369,7 +526,8 @@ BlogNest/
 │   │
 │   ├── models/
 │   │   ├── Blog.js
-│   │   └── User.js
+│   │   ├── User.js
+│   │   └── ViewedBlog.js
 │   │
 │   ├── routes/
 │   │   ├── auth.js
