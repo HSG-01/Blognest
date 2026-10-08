@@ -10,8 +10,18 @@ const app = express();
 
 connectDB();
 
+// CORS configuration
+const corsOptions = {
+    origin: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // Routes
@@ -25,15 +35,11 @@ app.get("/", (req, res) => {
     });
 });
 
-// Start server locally
+// Start server
 const PORT = process.env.PORT || 5000;
 
-if (process.env.NODE_ENV !== "production") {
-    app.listen(PORT, () => {
-        console.log(
-            `BlogNest backend server running on http://localhost:${PORT}`
-        );
-    });
-}
-
-module.exports = app;
+app.listen(PORT, () => {
+    console.log(
+        `BlogNest backend server running on http://localhost:${PORT}`
+    );
+});

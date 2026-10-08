@@ -103,7 +103,7 @@ async function loadBlogForEditing() {
     try {
 
         const response = await fetch(
-            `http://localhost:5000/api/blog/${editBlogId}`
+            `https://blognest-zeta.vercel.app/api/blog/${editBlogId}`
         );
 
         const data =
@@ -412,7 +412,7 @@ if (blogForm) {
 
                     const response =
                         await fetch(
-                            `http://localhost:5000/api/blog/${editBlogId}`,
+                            `https://blognest-zeta.vercel.app/api/blog/${editBlogId}`,
                             {
                                 method: "PUT",
 
@@ -488,7 +488,7 @@ if (blogForm) {
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/blog/create",
+                        "https://blognest-zeta.vercel.app/api/blog/create",
                         {
                             method: "POST",
 

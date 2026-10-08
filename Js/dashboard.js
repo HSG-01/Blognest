@@ -351,7 +351,7 @@ async function fetchAllBlogs() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/blog",
+            "https://blognest-zeta.vercel.appp/api/blog",
             {
                 method: "GET",
 
@@ -405,7 +405,7 @@ async function fetchViewedBlogs() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/blog/viewed/me",
+            "https://blognest-zeta.vercel.appp/api/blog/viewed/me",
             {
                 method: "GET",
 
@@ -1039,7 +1039,7 @@ async function deleteBlog(blogId) {
 
         const response =
             await fetch(
-                `http://localhost:5000/api/blog/${blogId}`,
+                `https://blognest-zeta.vercel.appp/api/blog/${blogId}`,
                 {
                     method: "DELETE",
 

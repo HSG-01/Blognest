@@ -64,7 +64,7 @@ async function loadBlog() {
 
             response =
                 await fetch(
-                    `http://localhost:5000/api/blog/${blogId}/view`,
+                    `https://blognest-zeta.vercel.app/api/blog/${blogId}/view`,
                     {
                         method: "POST",
                         headers: {
@@ -85,7 +85,7 @@ async function loadBlog() {
 
             response =
                 await fetch(
-                    `http://localhost:5000/api/blog/${blogId}`
+                    `https://blognest-zeta.vercel.app/api/blog/${blogId}`
                 );
 
         }
@@ -427,7 +427,7 @@ async function deleteBlog(blogId) {
 
         const response =
             await fetch(
-                `http://localhost:5000/api/blog/${blogId}`,
+                `https://blognest-zeta.vercel.app/api/blog/${blogId}`,
                 {
                     method: "DELETE",
                     headers: {
