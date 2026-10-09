@@ -22,7 +22,7 @@ if (loginForm) {
         }
 
         // Connect login form to backend API
-        fetch("https://blognest-zeta.vercel.appp/api/auth/login", {
+        fetch("https://blognest-zeta.vercel.app/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -105,7 +105,7 @@ if (registerForm) {
         }
 
         // Connect registration form to backend API
-        fetch("https://blognest-zeta.vercel.appp/api/auth/register", {
+        fetch("https://blognest-zeta.vercel.app/api/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
